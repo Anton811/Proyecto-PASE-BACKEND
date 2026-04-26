@@ -35,6 +35,13 @@ const usuario = {
     );
     return result;
   },
+  buscarId: async (data) => {
+    const [result] = await db.query(
+      "SELECT * FROM usuario WHERE idUsuario = ?",
+      [data],
+    );
+    return result;
+  },
 };
 
 module.exports = usuario;

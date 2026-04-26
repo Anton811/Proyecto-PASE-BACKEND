@@ -8,5 +8,6 @@ router.post("/login", usuarioControl.login);
 router.get("/verificar-sesion", auth, (req, res) => {
   res.json({ mensaje: "Token válido", usuario: req.user });
 });
+router.get("/:id", usuarioControl.getUsuario);
 
 module.exports = router;

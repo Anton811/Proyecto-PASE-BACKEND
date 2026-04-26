@@ -52,3 +52,19 @@ exports.login = async (req, res) => {
     res.status(500).json({ error: error.message }); // 👈 cambia esto
   }
 };
+
+exports.getUsuario = async (req, res) => {
+  try {
+    const id = req.params;
+    const user = await usuario.buscarId(id);
+
+    if (!user) {
+      return res.status(404).json({ mensaje: "Usuario no encontrado" });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error("ERROR PERFIL:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
