@@ -36,11 +36,12 @@ const usuario = {
     return result;
   },
   buscarId: async (data) => {
+    const idNum = parseInt(data);
     const [result] = await db.query(
       "SELECT * FROM usuario WHERE idUsuario = ?",
-      [data],
+      [idNum],
     );
-    return result;
+    return result[0];
   },
 };
 

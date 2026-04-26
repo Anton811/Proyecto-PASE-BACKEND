@@ -6,7 +6,14 @@ const app = express();
 const PORT = process.env.PORT;
 
 // Middlewares globales
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://proyecto-pase.netlify.app/", // 👈 agrega tu URL de Netlify
+    ],
+  }),
+);
 app.use(express.json());
 
 app.use("/api/usuario", require("./routes/usuario.route"));
