@@ -55,7 +55,7 @@ exports.login = async (req, res) => {
 
 exports.getUsuario = async (req, res) => {
   try {
-    const id = req.params;
+    const id = req.params.id;
     const user = await usuario.buscarId(id);
 
     if (!user) {
