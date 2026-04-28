@@ -9,9 +9,11 @@ const PORT = process.env.PORT;
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
-      "https://proyecto-pase.netlify.app/", // 👈 agrega tu URL de Netlify
+      "http://localhost:5173", // desarrollo local
+      "https://proyecto-pase.netlify.app", // producción Netlify
     ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 app.use(express.json());
