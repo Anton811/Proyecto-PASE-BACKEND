@@ -33,7 +33,7 @@ exports.login = async (req, res) => {
       return res.json({ mensaje: "Usuario y/o contraseña no valida" });
     }
 
-    const coinciden = await bcrypt.compare(password, user.password);
+    const coinciden = await bcrypt.compare(password, user.passwordUsuario);
     if (!coinciden) {
       return res.json({ mensaje: "Usuario y/o contraseña no valida" });
     }
