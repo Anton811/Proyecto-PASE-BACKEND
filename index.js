@@ -19,6 +19,7 @@ app.use(
 app.use(express.json());
 
 app.use("/api/usuario", require("./routes/usuario.route"));
+app.use("/api/tipoUsuario", require("./routes/tipoUsuario.route"));
 
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
