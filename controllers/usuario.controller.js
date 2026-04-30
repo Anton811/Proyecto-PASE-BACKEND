@@ -1,5 +1,6 @@
 const usuario = require("../models/usuario.model");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 exports.registro = async (req, res) => {
   try {
@@ -32,7 +33,8 @@ exports.login = async (req, res) => {
       return res.json({ mensaje: "Usuario y/o contraseña no valida" });
     }
 
-    if (password != user.password) {
+    const coinciden = await bcrypt.compare(password, user.password);
+    if (!coinciden) {
       return res.json({ mensaje: "Usuario y/o contraseña no valida" });
     }
 
