@@ -8,6 +8,14 @@ const tipoUsuario = {
 
     return result;
   },
+  agregarTipoUsuario: async (data) => {
+    const [result] = db.query(
+      "INSERT INTO tipousuario (nombreTipoUsuario) VALUES (?)",
+      [data],
+    );
+
+    return result;
+  },
 };
 
 module.exports = tipoUsuario;
