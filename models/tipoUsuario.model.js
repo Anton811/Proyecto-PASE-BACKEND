@@ -3,7 +3,7 @@ const db = require("../config/db.config");
 const tipoUsuario = {
   getAllTipoUsuario: async () => {
     const [result] = await db.query(
-      "SELECT nombreTipoUsuario from tipoUsuario",
+      "SELECT nombreTipoUsuario from tipousuario",
     );
 
     return result;
