@@ -4,4 +4,4 @@ const tipoUsuarioControl = require("../controllers/tipoUsuario.controller");
 
 router.get("/buscarTiposUsuario", tipoUsuarioControl.buscarTipoUsuario);
 
-module.exports.router;
+module.exports = router;
