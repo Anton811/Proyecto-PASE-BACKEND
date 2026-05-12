@@ -16,12 +16,12 @@ const reserva = {
   agregarReserva: async (usuario, auto, pago, zona, horaInicio, horaSalida) => {
     const [result] = await db.query(
       "INSERT INTO reserva (idUsuario,idAuto,idPago,idZona,idEstatus,horaInicio,horaFinal,fechaReserva) VALUES(?,?,?,?,?,?,?,NOW())",
-      [usuario, auto, pago, zona, 1, horaInicio, horaSalida],
+      [usuario, auto, pago, zona, 2, horaInicio, horaSalida],
     );
 
     return result;
   },
-  cargarReservaActiva: async (idUsuario) => {
+  cargarReservaActiva: async (idUsuario, fecha) => {
     const [results] = await db.query(
       `SELECT reserva.*, zona.sectorZona, zona.numZona,
      sucursal.nombreSucursal, estatusreserva.nombreEstatus
@@ -29,10 +29,11 @@ const reserva = {
      INNER JOIN zona ON reserva.idZona = zona.idZona
      INNER JOIN sucursal ON zona.idSucursal = sucursal.idSucursal
      INNER JOIN estatusreserva ON reserva.idEstatus = estatusreserva.idEstatus
-     WHERE reserva.idUsuario = ? AND reserva.idEstatus = 2
+     WHERE reserva.idUsuario = ? AND reserva.idEstatus = 2 AND fechaReserva = ?
      LIMIT 1`,
-      [idUsuario],
+      [idUsuario, fecha],
     );
+    console.log(results);
     return results[0];
   },
 };

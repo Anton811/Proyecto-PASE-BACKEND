@@ -38,8 +38,9 @@ exports.agregarReserva = async (req, res) => {
 };
 exports.cargarReservaActiva = async (req, res) => {
   try {
-    const { idUsuario } = req.params;
-    const reserva = await reservaModel.cargarReservaActiva(idUsuario);
+    const idUsuario = req.params.idUsuario;
+    const { fecha } = req.query;
+    const reserva = await reservaModel.cargarReservaActiva(idUsuario, fecha);
     res.json({ content: reserva || null });
   } catch (error) {
     console.error("ERROR:", error);
