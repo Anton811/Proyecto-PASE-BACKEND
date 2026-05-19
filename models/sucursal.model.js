@@ -18,6 +18,7 @@ const sucursal = {
       s.nombreSucursal,
       s.direccionSucursal,
       s.idMunicipio,
+      s.costoHora,
       m.nombreMunicipio,
       e.nombreEstado
     FROM sucursal s

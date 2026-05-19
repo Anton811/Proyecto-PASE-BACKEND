@@ -1,14 +1,14 @@
 const db = require("../config/db.config");
 
 const reserva = {
-  cargarReservasSucursal: async (id, horaEntrada, horaSalida) => {
+  cargarReservasSucursal: async (id, horaEntrada, horaSalida, fechaReserva) => {
     const [results] = await db.query(
       `SELECT reserva.*, estatusreserva.colorEstatus 
         FROM reserva 
         INNER JOIN zona ON reserva.idZona = zona.idZona
         INNER JOIN estatusreserva ON reserva.idEstatus = estatusreserva.idEstatus
-        WHERE zona.idSucursal = ? AND reserva.horaInicio < ? AND reserva.horaFinal > ?`,
-      [id, horaSalida, horaEntrada],
+        WHERE zona.idSucursal = ? AND reserva.horaInicio < ? AND reserva.horaFinal > ? AND fechaReserva = ?`,
+      [id, horaSalida, horaEntrada, fechaReserva],
     );
 
     return results;

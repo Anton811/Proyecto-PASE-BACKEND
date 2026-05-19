@@ -3,7 +3,7 @@ const reservaModel = require("../models/reserva.model");
 const estatusReservaModel = require("../models/estatusReserva.model");
 
 exports.cargarReservasSucursal = async (req, res) => {
-  const { id, horaEntrada, horaSalida } = req.query;
+  const { id, horaEntrada, horaSalida, fechaReserva } = req.query;
   console.log("Params:", id, horaEntrada, horaSalida);
   const reservas = await reservaModel.cargarReservasSucursal(id, horaEntrada, horaSalida);
   console.log("Reservas encontradas:", reservas);
