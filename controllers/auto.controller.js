@@ -56,3 +56,13 @@ exports.agregarAuto = async (req, res) => {
   if (!auto) return res.json("Auto no registrado");
   res.json("Auto cargado exitosamente");
 };
+exports.eliminarAuto = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await autoModel.eliminarAuto(id);
+    res.json({ message: "Vehículo eliminado correctamente" });
+  } catch (error) {
+    console.error("ERROR:", error);
+    res.status(500).json({ error: error.message });
+  }
+};

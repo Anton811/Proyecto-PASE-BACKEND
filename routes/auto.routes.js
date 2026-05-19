@@ -6,6 +6,7 @@ router.post("/marca/agregarMarca", autoController.agregarMarca);
 router.get("/marca/cargarMarcas", autoController.cargarMarcas);
 router.post("/modelo/agregarModelo", autoController.agregarModelo);
 router.get("/modelo/cargarModelos", autoController.cargarModelos);
+router.delete("/eliminarAuto/:id", autoController.eliminarAuto);
 router.get("/usuario/:id", autoController.cargarAutosUsuario);
 router.post("/agregarAuto", autoController.agregarAuto);
 

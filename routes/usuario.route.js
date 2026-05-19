@@ -5,6 +5,7 @@ const auth = require("../middleware/auth.middleware");
 
 router.post("/registro", usuarioControl.registro);
 router.post("/login", usuarioControl.login);
+router.put("/modificarUsuario/:id", usuarioControl.mofificarUsuario);
 router.get("/verificar-sesion", auth, (req, res) => {
   res.json({ mensaje: "Token válido", usuario: req.user });
 });

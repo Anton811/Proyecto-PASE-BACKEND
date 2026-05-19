@@ -18,3 +18,13 @@ exports.agregarTarjeta = async (req, res) => {
 
   res.json("tarjeta guardada exitosamente");
 };
+exports.eliminarTarjeta = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await pagoModel.eliminarTarjeta(id);
+    res.json({ message: "Tarjeta eliminada correctamente" });
+  } catch (error) {
+    console.error("ERROR:", error);
+    res.status(500).json({ error: error.message });
+  }
+};

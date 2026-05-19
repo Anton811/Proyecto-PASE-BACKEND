@@ -12,48 +12,33 @@ const usuario = {
     return result.length > 0;
   },
   buscarLogin: async (data) => {
-    const [result] = await db.query(
-      "SELECT * FROM usuario WHERE correoUsuario = ?",
-      [data],
-    );
+    const [result] = await db.query("SELECT * FROM usuario WHERE correoUsuario = ?", [data]);
 
     return result[0];
   },
   registro: async (data) => {
-    const {
-      nombre,
-      app,
-      apm,
-      telefono,
-      email,
-      idTypeUsuario,
-      fecha,
-      password,
-    } = data;
+    const { nombre, app, apm, telefono, email, idTypeUsuario, fecha, password } = data;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const [result] = await db.query(
       "INSERT INTO usuario (nombreUsuario, appUsuario, apmUsuario, telUsuario, correoUsuario, idTipoUsuario, passwordUsuario) VALUES (?, ?, ?, ?, ?, ?, ?)",
-      [
-        nombre,
-        app,
-        apm || null,
-        telefono,
-        email,
-        idTypeUsuario,
-        hashedPassword,
-      ],
+      [nombre, app, apm || null, telefono, email, idTypeUsuario, hashedPassword],
     );
     return result;
   },
   buscarId: async (data) => {
     const idNum = parseInt(data);
-    const [result] = await db.query(
-      "SELECT * FROM usuario WHERE idUsuario = ?",
-      [idNum],
-    );
+    const [result] = await db.query("SELECT * FROM usuario WHERE idUsuario = ?", [idNum]);
     return result[0];
+  },
+  modificarUsuario: async (id, nombre, app, apm, correo, telefono) => {
+    const result = await db.query(
+      "UPDATE usuario SET nombreUsuario = ?, appUsuario = ?, apmUsuario = ?, correoUsuario = ?, telUsuario = ? WHERE idUsuario = ?",
+      [nombre, app, apm, correo, telefono, id],
+    );
+
+    return result;
   },
 };
 

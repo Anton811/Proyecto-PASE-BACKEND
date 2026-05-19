@@ -21,6 +21,10 @@ const auto = {
 
     return result;
   },
+  eliminarAuto: async (id) => {
+    const [result] = await db.query("DELETE FROM auto WHERE idAuto = ?", [id]);
+    return result;
+  },
 };
 
 module.exports = auto;

@@ -70,3 +70,16 @@ exports.getUsuario = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.mofificarUsuario = async (req, res) => {
+  const id = req.params.id;
+  const { nombre, app, apm, correo, telefono } = req.body;
+
+  const result = await usuario.modificarUsuario(id, nombre, app, apm, correo, telefono);
+
+  if (!result) {
+    return res.status(404).json("No se logro modificar el usuario");
+  }
+
+  res.json("Usuario modificado exitosamente");
+};

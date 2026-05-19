@@ -14,6 +14,10 @@ const pago = {
 
     return result;
   },
+  eliminarTarjeta: async (id) => {
+    const [result] = await db.query("DELETE FROM pago WHERE idPago = ?", [id]);
+    return result;
+  },
 };
 
 module.exports = pago;
