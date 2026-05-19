@@ -5,6 +5,7 @@ const reservaController = require("../controllers/reserva.controller");
 router.get("/sucursal/cargarReservas", reservaController.cargarReservasSucursal);
 router.post("/estatus/agregarEstatusReserva", reservaController.agregarEstatusReserva);
 router.post("/agregarReserva", reservaController.agregarReserva);
+router.get("/usuario/cargarReservas/:id", reservaController.cargarReservasUsuario);
 router.get("/reservaActiva/:idUsuario", reservaController.cargarReservaActiva);
 
 module.exports = router;

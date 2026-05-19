@@ -2,11 +2,11 @@ const db = require("../config/db.config");
 
 const sucursal = {
   agregarSucursal: async (data) => {
-    const { municipio, nombre, direccion } = data.body;
+    const { municipio, nombre, direccion, costo, piso, numZona } = data.body;
 
     const [result] = await db.query(
-      "INSERT INTO sucursal (idMunicipio,nombreSucursal,direccionSucursal) VALUES (?,?,?)",
-      [municipio, nombre, direccion],
+      "INSERT INTO sucursal (idMunicipio,nombreSucursal,direccionSucursal,pisoSucursal,sectorSucursal,numZonaSucursal,costoHora) VALUES (?,?,?,?,?,5,?)",
+      [municipio, nombre, direccion, piso, numZona, costo],
     );
 
     return result.insertId;
@@ -28,10 +28,7 @@ const sucursal = {
     return result;
   },
   cargarSucursal: async (id) => {
-    const [result] = await db.query(
-      "SELECT * FROM sucursal WHERE idSucursal = ?",
-      [id],
-    );
+    const [result] = await db.query("SELECT * FROM sucursal WHERE idSucursal = ?", [id]);
 
     return result;
   },

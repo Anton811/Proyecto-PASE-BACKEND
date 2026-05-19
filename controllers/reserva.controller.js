@@ -47,3 +47,13 @@ exports.cargarReservaActiva = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+exports.cargarReservasUsuario = async (req, res) => {
+  const id = req.params.id;
+
+  const reservas = await reservaModel.cargarReservasUsuario(id);
+  console.log(reservas);
+
+  if (!reservas) return res.json({ message: "No se cargaron reservas", body: [] });
+
+  return res.json({ message: "Reservas cargadas correctamente", body: reservas });
+};

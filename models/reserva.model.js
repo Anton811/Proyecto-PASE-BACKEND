@@ -36,6 +36,21 @@ const reserva = {
     console.log(results);
     return results[0];
   },
+  cargarReservasUsuario: async (id) => {
+    const [results] = await db.query(
+      `SELECT  r.idReserva, r.horaInicio, r.horaFinal,r.idZona, r.costo, r.fechaReserva, ma.nombreMarca AS marca, mo.nombreModelo AS modelo, a.matricula AS matricula, a.color, s.nombreSucursal AS sucursal FROM reserva AS r
+      INNER JOIN auto AS a ON r.idAuto = a.idAuto
+      INNER JOIN modeloauto AS mo ON a.idModeloAuto = mo.idModelo
+      INNER JOIN marcaauto AS ma ON mo.idMarcaAuto = ma.idMarca
+      INNER JOIN zona AS z ON r.idZona = z.idZona
+      INNER JOIN sucursal AS s ON z.idSucursal = s.idSucursal 
+      WHERE r.idUsuario = ?
+      ORDER BY r.idReserva DESC;`,
+      [id],
+    );
+
+    return results;
+  },
 };
 
 module.exports = reserva;

@@ -1,5 +1,5 @@
 const db = require("../config/db.config");
-const sectores = ["A", "B", "C", "D", "E", "F"];
+const sectores = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
 const zona = {
   agregarZona: async (piso, sector, numZona, idSucursal) => {
